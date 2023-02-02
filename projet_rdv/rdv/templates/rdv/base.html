@@ -1,0 +1,18 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>{% block title%}{% endblock %} </title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}" />
+    </head>
+    <body>
+
+        <nav>
+            <a href="{%url 'connexion-client' %}">Connexion client</a>
+            <a href="{%url 'connexion-admin' %}">Connexion administrateur</a>
+            <a href="{%url 'contact' %}">Contact</a>
+        </nav>
+        
+        {% block content%}{% endblock %}  
+    </body>
+</html>
