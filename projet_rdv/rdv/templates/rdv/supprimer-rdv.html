@@ -1,0 +1,13 @@
+{% extends 'rdv/base.html' %}
+
+{% block content %}
+
+<h1>Supprimer un rendez-vous</h1> 
+<p>Etes-vous sûr de vouloir supprimer le rendez-vous prévu le : {{rdv_to_delete.date}} ?</p>  
+
+<form action="" method="post">
+    {%csrf_token%}
+    <input type="submit" value="Supprimer">
+</form>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{%extends 'rdv/base.html'%}
+
+
+
+{% block content%}
+
+<h2>Mon compte</h2>
+
+<ul>
+    <li>Nom d'utilisateur : {{user.username}}</li>
+    <li>Nom : {{user.last_name}}</li>
+    <li>Prénom : {{user.first_name}}</li>
+    <li>Adresse mail : {{user.email}}</li>
+    <li>Mot de passe : ************</li>
+</ul>
+
+<a href="{% url 'modifier-mon-compte' %}">Modifier mes informations</a>
+    
+{%endblock%}

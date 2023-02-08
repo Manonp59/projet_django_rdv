@@ -15,12 +15,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from rdv import views
+import rdv.views as views
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accueil/', views.accueil, name='accueil'), 
-    path('connexion_client/', views.connexion_client, name='connexion-client'), 
-    path('connexion_admin/', views.connexion_administrateur, name='connexion-admin'),
-    path('contact/', views.contact, name='contact')
+    path('accueil/', views.accueil, name='accueil'),
+    path('login/', views.login_page, name='login'), 
+    path('logout/', views.logout_user, name='logout'), 
+    path('signup/', views.signup_page, name='signup'),
+    path('prendre-rdv/<int:id>/', views.prendre_rdv, name='prendre-rdv'), 
+    path('mon-compte/', views.user_detail, name='mon-compte'),
+    path('mon-compte/modifier/', views.modifier_compte, name='modifier-mon-compte'),
+    path('mes-rdv/', views.rdv_list, name='mes-rdv'), 
+    path('rdv/<int:id>/', views.rdv_detail, name='rdv-detail'),
+    # path('rdv/<int:id>/modifier/', views.rdv_update, name='modifier-rdv'),
+    path('rdv/<int:id>/supprimer/', views.rdv_delete, name='supprimer-rdv'),
+    path('liste-rdv/', views.liste_rdv, name='liste-rdv'), 
+    path('creneaux/', views.creneaux, name='creneaux'), 
+    path('creer-creneau/', views.creer_creneau, name='creer-creneau'),
+    path('creneaux-dispo/', views.creneaux_dispo, name='creneaux-dispo'), 
+    path('rdv/<int:id>/notes/', views.ajouter_notes, name='ajouter-notes'), 
+    path('supprimer-creneau/<int:id>', views.supprimer_creneau, name='supprimer-creneau')
+    
 ]
+
+
+

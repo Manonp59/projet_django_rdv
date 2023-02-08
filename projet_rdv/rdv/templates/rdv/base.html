@@ -6,13 +6,25 @@
         <link rel="stylesheet" href="{% static 'styles.css' %}" />
     </head>
     <body>
-
-        <nav>
-            <a href="{%url 'connexion-client' %}">Connexion client</a>
-            <a href="{%url 'connexion-admin' %}">Connexion administrateur</a>
-            <a href="{%url 'contact' %}">Contact</a>
-        </nav>
+    <nav>
+        {% if user.is_authenticated %}
+        <p>Vous êtes connecté en tant que {{request.user}}. <a href="{% url 'logout' %}">Se déconnecter</a></p>
+        <a href="{% url 'accueil' %}">Accueil</a>
+        <a href="{% url 'mon-compte' %}">Mon compte</a>
+        {% if user.is_staff %}
+        <a href="{% url 'liste-rdv' %}">Liste des rendez-vous</a>
+        <a href="{%url 'creneaux' %}">Créneaux ouverts à la réservation</a>
+        {% else %}
+        <a href="{% url 'mes-rdv' %}">Mes rendez-vous</a>
+        <a href="{% url 'creneaux-dispo' %}">Prendre rendez-vous</a>
+        {% endif %}
+        {% else %}
+        <p><a href="{% url 'signup' %}">S'inscrire</a><a href="{% url 'login' %}">Se connecter</a></p>
+        {% endif %}
+    </nav>
+    {% block content%}{% endblock %}
+    
+   
         
-        {% block content%}{% endblock %}  
     </body>
 </html>

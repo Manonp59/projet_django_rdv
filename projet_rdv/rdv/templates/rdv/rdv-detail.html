@@ -1,0 +1,30 @@
+{% extends 'rdv/base.html' %}
+
+{% block content%}
+
+<h1> Détails du rendez-vous </h1>
+
+{% if user.is_superuser %}
+<p>Client : {{rdv.user.first_name}} {{rdv.user.last_name}}</p>
+{% endif%}
+<p>Date : {{rdv.date}}</p>
+<p>Motif : {{rdv.motif}}</p>
+{% if user.is_superuser %}
+<p>Notes : {{rdv.notes}}</p>
+{% endif%}
+
+{% if user.is_superuser %}
+<a href="{% url 'ajouter-notes' rdv.id %}">Ajouter des notes</a>
+{% endif %}
+
+{% now "Y-m-d" as todays_date %}
+{% if todays_date < rdv.date|date:"Y-m-d" %}
+{% if rdv.user %}
+<a href="{% url 'supprimer-rdv' rdv.id %}">Annuler le rendez-vous</a>
+
+{% else %}
+<a href="{% url 'supprimer-creneau' rdv.id %}">Supprimer le créneau</a>
+{% endif %}
+{% endif %}
+
+{% endblock %}
