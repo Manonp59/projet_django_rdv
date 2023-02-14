@@ -1,0 +1,29 @@
+{% extends 'rdv/base.html' %}
+
+{%block title%}Supprimer rendez-vous{%endblock%}
+
+{% block content %}
+{%load static%}
+<h1>Supprimer un rendez-vous</h1> 
+
+<section id="supprimer_rdv">
+    <section>
+        <figure>
+        <img src="{% static 'images/sure.gif'%}" alt="">
+    </figure>
+    </section>
+    <section>
+        <p>Etes-vous sûr de vouloir supprimer le rendez-vous prévu le : </p><p> {{rdv_to_delete.date}} ?</p>
+        <form method="post">
+            {%csrf_token%}
+            <div class="bouton_page">
+            <input class="bouton_bleu" type="submit" value="Supprimer">
+            </div>
+        </form>
+    </section>
+</section>
+  
+
+
+
+{% endblock %}

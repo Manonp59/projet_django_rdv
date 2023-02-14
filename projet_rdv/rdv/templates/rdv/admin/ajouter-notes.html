@@ -1,0 +1,28 @@
+{% extends 'rdv/base.html' %}
+
+{%block title%}Ajouter notes{%endblock%}
+
+{% block content %}
+
+<h1>Ajouter des notes</h1>
+
+<section id="ajouter_notes">
+    <section class="texte_gauche">
+        <p>👤 {{rdv.user.first_name}} {{rdv.user.last_name}}</p>
+        <p>🗓️ {{rdv.date}}</p>
+        <p>Motif : {{rdv.motif}}</p>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="fieldWrapper">
+                <p><label for="{{form.notes.id_for_label}}">Notes</label>
+                {{form.notes}}</p>
+            </div>
+            <div class="bouton_page">
+                <input class="bouton_bleu" type="submit" value="Valider">
+            </div>
+        </form>
+    </section>
+</section>
+
+{% endblock %}

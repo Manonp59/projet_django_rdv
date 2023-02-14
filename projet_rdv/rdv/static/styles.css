@@ -1,0 +1,373 @@
+/* Propriétés générales */
+
+body {
+    max-width: 1400px;
+    margin:0 auto ;
+    font-family: 'Comfortaa', cursive;
+    font-weight: normal;
+    height: 100%;
+}
+
+main{
+    min-height: 483px;
+}
+
+header{
+   min-height: 18px;
+}
+
+figure {
+    margin: 0;
+}
+
+
+h1{
+    text-align: center;
+    color: #012F62;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+a{
+    color: #D61F3A;
+}
+
+.titre_rouge{
+    color: #D61F3A;
+}
+
+h2{
+    text-align: center;
+    color: #D61F3A;
+}
+
+.texte_gauche{
+    text-align: left;
+}
+
+
+/* Nav-bar  */
+
+nav{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    background-color: #DCECFA;
+}
+
+
+nav section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+nav p {
+    font-size: 15px;
+}
+
+
+/* Header */
+
+header a:hover{
+    font-size: large;
+    font-weight: bold;
+    transition-duration: 1s;
+}
+
+header{
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 50px;
+    padding-top: 50px;}
+
+/* Boutons */
+
+.bouton_bleu {
+    border-radius: 20px;
+    border : solid white;
+    background-color: #012F62;
+    color : white ; 
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Comfortaa';
+    font-size:medium;
+    padding: 8px;
+
+}
+
+.bouton_bleu:hover{
+    border : solid #012F62;
+    background-color:white ;
+    color : #012F62 ;
+}
+
+.deconnecte{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#bouton_compte {
+    display: flex;
+    justify-content: center;
+}
+
+#bouton_compte a{
+    width: 300px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+
+.bouton_page{
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+#boutons{
+    display: flex;
+}
+
+.bouton_centre{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#ouvrir{
+    width: 400px;
+}
+
+/* Page accueil admin */
+
+
+.accueil_admin{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    justify-content: space-around;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.accueil_admin a{
+    text-align: center;
+}
+
+.accueil_admin section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.date{
+    text-align: center;
+    margin-top: 40px;
+    font-weight: 700;
+    font-size: large;
+}
+
+.bandeau{
+    width: 100%;
+    margin-top: 50px;
+}
+
+
+/* Page accueil client  */
+
+.presentation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    
+}
+
+.presentation img{
+    width: 90%;
+    border-radius: 10%;
+}
+
+.presentation figure{
+    display: flex;
+    justify-content: center;
+}
+
+.presentation h2{
+    text-align: center;
+    color : #D61F3A
+}
+
+.presentation article{
+    align-self: center;
+    padding: 30px;
+}
+
+
+/* Footer  */
+
+footer{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: #DCECFA ;
+    width: 1400px;
+
+
+}
+
+
+footer #logo{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+footer section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#reseaux{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer ul {
+    color:#012F62
+}
+
+footer p{
+    color: #D61F3A;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+/* Formulaires */
+
+
+form{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 0px;
+}
+
+form button{
+    width: 170px;
+    height: 40px;
+    border-radius: 20px;
+    border : solid white;
+    background-color: #012F62;
+    color : white ; 
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Comfortaa';
+    font-size: large;
+    margin-top: 40px;
+
+}
+
+form button:hover{
+    border : solid #012F62;
+    background-color:white ;
+    color : #012F62 ;
+}
+
+
+
+
+
+
+
+
+#modifier_compte{
+    text-align: left;
+    display: flex;
+    justify-content: center;
+}
+
+#modifier_compte form{
+    text-align: left;
+}
+
+
+/* Différentes sections */
+
+
+#planning{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#planning article {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+#details_rdv, #ajouter_notes, #details_compte, #inscription{
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+
+
+
+
+#supprimer_rdv, #prendre_rdv{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    text-align: center;
+    align-items: center;
+    margin-top: 70px;
+}
+
+#supprimer_rdv img, #prendre_rdv img{
+    width: 500px;
+    border-radius: 20px;
+}
+
+#supprimer_rdv figure, #prendre_rdv figure{
+    display: flex;
+    justify-content: center;
+}
+
+#supprimer_rdv p, #prendre_rdv p{
+    font-weight: bold;
+}
+
+#supprimer{
+    width: 250px;
+    background-color: #D61F3A;
+}
+
+#creneaux_dispo{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+}
+
+
+
+#prendre_rdv section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

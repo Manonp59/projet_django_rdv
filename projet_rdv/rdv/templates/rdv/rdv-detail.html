@@ -1,0 +1,43 @@
+{% extends 'rdv/base.html' %}
+
+{%block title%}Détails uu rendez-vous{%endblock%}
+
+{% block content%}
+
+<h1> Détails du rendez-vous </h1>
+
+<section id="details_rdv">
+<section class="texte_gauche">
+{% if user.is_staff %}
+<p>👤 {{rdv.user.first_name}} {{rdv.user.last_name}}</p>
+{% endif%}
+<p>🗓️ {{rdv.date}}</p>
+<p>Motif : {{rdv.motif}}</p>
+{% if user.is_staff %}
+{% if rdv.notes %}
+<p>Notes : {{rdv.notes}}</p>
+{% endif%}
+{% endif %}
+
+<section id="boutons">
+{% if user.is_staff %}
+{% if rdv.notes %}
+<a class="bouton_bleu bouton_page" href="{% url 'modifier-note' rdv.id %}">Modifier les notes</a>
+{% else %}
+<a class="bouton_bleu bouton_page"  href="{% url 'ajouter-notes' rdv.id %}">Ajouter des notes</a>
+{% endif %}
+{% endif %}
+
+{% now "Y-m-d" as todays_date %}
+{% if todays_date < rdv.date|date:"Y-m-d" %}
+{% if rdv.user %}
+<a class="bouton_bleu bouton_page"  href="{% url 'supprimer-rdv' rdv.id %}">Annuler le rendez-vous</a>
+
+{% else %}
+<a class="bouton_bleu bouton_page" href="{% url 'supprimer-creneau' rdv.id %}">Supprimer le créneau</a>
+{% endif %}
+{% endif %}
+</section>
+</section>
+</section>
+{% endblock %}

@@ -1,0 +1,67 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>{% block title%}{% endblock %} </title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;700&display=swap" rel="stylesheet">
+
+    </head>
+    <body>
+    <nav>
+        <figure>
+            <img src="{% static 'images/logo.png' %}" alt="logo" width="70">
+        </figure>
+        <h1>Mary Poppins Coaching</h1>
+        {% if user.is_authenticated %}
+        <section><p>Vous êtes connecté(e) en tant que {{request.user}}</p> <a class="bouton_bleu" href="{% url 'logout' %}">Se déconnecter</a></section>
+        {% else %}
+        <section class="deconnecte"><a class="bouton_bleu" href="{% url 'signup' %}">S'inscrire</a><a class="bouton_bleu" href="{% url 'login' %}">Se connecter</a></section>
+        {% endif %}
+    </nav>
+    
+    <header>
+        {% if user.is_authenticated %}
+        <a href="{% url 'accueil' %}">Accueil</a>
+        <a href="{% url 'mon-compte' %}">Mon compte</a>
+        {% if user.is_staff %}
+        <a href="{% url 'mes-rdv' %}">Planning</a>
+        <a href="{%url 'creneaux-dispo' %}">Créneaux ouverts à la réservation</a>
+        {% else %}
+        <a href="{% url 'mes-rdv' %}">Mes rendez-vous</a>
+        <a href="{% url 'creneaux-dispo' %}">Prendre rendez-vous</a>
+        {% endif %}
+        {% endif %} 
+    </header>
+    
+   <main>
+    
+    {% block content%}{% endblock %}
+   </main>
+   <footer>
+        <section id="logo">
+            <figure>
+                <img src="{% static 'images/logo.png' %}" alt="logo" width="170">
+            </figure>
+        </section>
+        <section>
+            <p>Contact</p>
+            <ul>
+                <li>Tel. 0606060606</li>
+                <li>Mail supercalifragilis@gmail.com</li>
+                <li>3 rue de la cheminée 75000 Paris</li>
+            </ul>
+        </section>
+        <section id="reseaux">
+            <img src="{% static 'images/insta.png' %}" alt="logo" width="50">
+            <img src="{% static 'images/facebook.png' %}" alt="logo" width="50">
+            <img src="{% static 'images/linkedin.png' %}" alt="logo" width="50">
+        </section>
+    </footer> 
+    
+   
+        
+    </body>
+</html>

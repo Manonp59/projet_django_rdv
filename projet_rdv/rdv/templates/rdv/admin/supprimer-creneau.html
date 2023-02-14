@@ -1,0 +1,25 @@
+{% extends 'rdv/base.html' %}
+
+{%block title%}Supprimer créneau{%endblock%}
+
+{% block content %}
+{%load static%}
+<h1>Supprimer un créneau</h1> 
+<section id="supprimer_rdv">
+    <section>
+        <figure>
+        <img src="{% static 'images/sure.gif'%}" alt="">
+    </figure>
+    </section>
+    <section>
+        <p>Etes-vous sûr de vouloir supprimer le créneau du : </p><p> {{rdv.date}} ?</p>
+        <form action="" method="post">
+            {%csrf_token%}
+            <div class="bouton_page">
+            <input class="bouton_bleu" id="supprimer" type="submit" value="Supprimer">
+            </div>
+        </form>
+    </section>
+</section>
+
+{% endblock %}

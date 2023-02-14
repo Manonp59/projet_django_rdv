@@ -1,0 +1,24 @@
+{% extends 'rdv/base.html' %}
+
+{%block title%}Créer un créneau{%endblock%}
+
+{% block content %}
+
+<h1>Créer un créneau de rendez-vous</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{form.username.errors}}
+        <p><label for="{{form.date.id_for_label}}">Date : </label>
+        {{form.date}}</p>
+    </div>
+    <div class="bouton_centre">
+    <input class="bouton_bleu bouton_page" type="submit" value="Valider">
+    </div>
+</form>
+
+
+{% endblock %}
+
