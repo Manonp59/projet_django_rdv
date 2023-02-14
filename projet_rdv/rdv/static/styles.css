@@ -84,6 +84,15 @@ header{
     padding-bottom: 50px;
     padding-top: 50px;}
 
+/* Messages */
+
+
+.messages{
+    text-align: center;
+    list-style: none;
+    font-weight: bold;
+}
+
 /* Boutons */
 
 .bouton_bleu {

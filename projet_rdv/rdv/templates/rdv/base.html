@@ -35,11 +35,21 @@
         {% endif %}
         {% endif %} 
     </header>
-    
-   <main>
-    
-    {% block content%}{% endblock %}
+    <section id="message">
+        {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+        <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    </section>
+    <main>
+          {% block content%}{% endblock %}
    </main>
+  
+    
+   
    <footer>
         <section id="logo">
             <figure>
