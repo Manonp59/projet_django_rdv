@@ -132,6 +132,7 @@ def prendre_rdv(request, id):
         rdv.user = user
         rdv.motif = request.POST['motif']
         rdv.save()
+        messages.success(request, 'Votre rendez-vous a bien été enregistré ✅')
         return redirect('mes-rdv')
     else : 
         form = forms.PrendreRdv(request.POST, instance = rdv)
@@ -176,6 +177,7 @@ def modifier_compte(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            messages.success(request, 'Vos modifications ont bien été prises en compte ✅')
             return redirect('mon-compte')
 
     else : 
@@ -250,9 +252,9 @@ def rdv_delete(request, id):
     if request.method == 'POST':
         rdv = Rdv()
         rdv.date = rdv_to_delete.date
-        rdv.save()
         rdv_to_delete.delete()
-        messages.success(request, "Le rendez-vous a bien été supprimé.")
+        rdv.save()
+        messages.success(request, "Le rendez-vous a bien été supprimé ✅")
         return redirect('mes-rdv')
         
     
@@ -280,7 +282,10 @@ def creer_creneau(request):
         form = forms.CreerCreneau(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, 'Le créneau a bien été créé ✅')
             return redirect('creneaux-dispo')
+        else :
+            messages.warning(request,'Ce créneau est déjà créé ❌')
     return render(request, 'rdv/admin/creer-creneaux.html', {'form' : form})
 
 
@@ -326,6 +331,7 @@ def ajouter_notes(request, id):
         if form.is_valid():
             rdv.notes = request.POST['notes']
             rdv.save()
+            messages.success(request, 'Les notes ont été enregistrées ✅')
             return redirect('rdv-detail', rdv.id)
     return render(request, 'rdv/admin/ajouter-notes.html', {'form' : form, 'rdv':rdv})
 
@@ -343,7 +349,7 @@ def supprimer_creneau(request, id):
     rdv = Rdv.objects.get(id=id)
     if request.method == 'POST':
         rdv.delete()
-        messages.success(request, "Le rendez-vous a bien été supprimé.")
+        messages.success(request, "Le rendez-vous a bien été supprimé ✅")
         return redirect('creneaux-dispo')
         
     
@@ -374,6 +380,7 @@ def modifier_note(request, id):
         
         if form.is_valid():
             rdv = form.save()
+            messages.success(request, 'Vos modifications ont bien été enregistrées ✅')
             return redirect('rdv-detail', rdv.id)
 
     else : 

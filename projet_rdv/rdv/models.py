@@ -15,7 +15,7 @@ class User(AbstractUser):
 # Classe pour les rendez-vous 
 class Rdv(models.Model):
     
-    date = models.DateTimeField(default=timezone.now())
+    date = models.DateTimeField(default=timezone.now(), unique=True)
     motif = models.CharField(max_length=30)
     user = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
     notes = models.CharField(max_length=1000)
