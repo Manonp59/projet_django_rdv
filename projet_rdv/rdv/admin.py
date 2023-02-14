@@ -1,3 +1,5 @@
 from django.contrib import admin
 
-# Register your models here.
+from rdv.models import User,Rdv
+
+admin.site.register(Rdv)

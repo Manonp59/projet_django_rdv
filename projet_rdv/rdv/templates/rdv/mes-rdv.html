@@ -1,33 +1,59 @@
 {% extends 'rdv/base.html' %}
 
+{%block title%}Mes rendez-vous{%endblock%}
+
 {% block content%}
 
 <h1>Mes rendez-vous</h1>
 
+<section id='planning'>
+<article>
 <h2>Rendez-vous passés</h2>
 
-<ul>
-    {% for rdv in liste_rdv|dictsort:'date' %}
+{% if user.is_staff %}
+{% for rdv in liste_rdv|dictsortreversed:'date'%}
+{% now "Y-m-d" as todays_date %}
+{% if todays_date > rdv.date|date:"Y-m-d" %}
+{% if rdv.user %}
+<p> 🗓️ {{rdv.date}} 👤 {{rdv.user.first_name}} {{rdv.user.last_name}} <a href="{% url 'rdv-detail' rdv.id %}">Voir 🔎</a></p>
+{% endif %}
+{% endif %}
+{% endfor%}
+{% else %}
+    {% for rdv in liste_rdv|dictsortreversed:'date' %}
     {% now "Y-m-d" as todays_date %}
     {% if todays_date > rdv.date|date:"Y-m-d" %}
     {% if rdv.user == request.user %}
-    <li>Date : {{rdv.date}} <a href="{% url 'rdv-detail' rdv.id %}">Détails</a>
+    <p>🗓️ {{rdv.date}} <a href="{% url 'rdv-detail' rdv.id %}">Voir 🔎</a></p>
     {% endif %}
     {% endif %}
     {% endfor %}
-</ul>
+{% endif %}
+</article>
 
+<article>
 <h2>Rendez-vous à venir</h2>
 
-<ul>
+{% if user.is_staff %}
+{% for rdv in liste_rdv|dictsort:'date'%}
+{% now "Y-m-d" as todays_date %}
+{% if todays_date < rdv.date|date:"Y-m-d" %}
+{% if rdv.user %}
+<p> 🗓️ {{rdv.date}} 👤 {{rdv.user.first_name}} {{rdv.user.last_name}} <a href="{% url 'rdv-detail' rdv.id %}">Voir 🔎</a></p>
+{% endif %}
+{% endif %}
+{% endfor%}
+{% else %}
     {% for rdv in liste_rdv|dictsort:'date' %}
     {% now "Y-m-d" as todays_date %}
     {% if todays_date < rdv.date|date:"Y-m-d" %}
     {% if rdv.user == request.user %}
-    <li>Date : {{rdv.date}} <a href="{% url 'rdv-detail' rdv.id %}">Détails</a>
+    <p>🗓️ {{rdv.date}} <a href="{% url 'rdv-detail' rdv.id %}">Voir 🔎</a></p>
     {% endif %}
     {% endif %}
     {% endfor %}
-</ul>
+{% endif %}
+</article>
+</section>
 
 {% endblock %}

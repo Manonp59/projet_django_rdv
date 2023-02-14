@@ -1,12 +1,48 @@
- {% extends 'rdv/base.html' %}
+{% extends 'rdv/base.html' %}
+
 
 {%block title%}Accueil{%endblock%}
 
 {%block content%}
+{% load static %}
+<h1>Bienvenue {% if user.is_authenticated%} {{user.first_name}} !{% else %}sur mon site {% endif %} </h1>
 
-<h1>Bienvenue sur mon site</h1>
+{% if user.is_staff %}
 
-<h2>Mon travail</h2>
-<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore quas accusamus cum quia corrupti deleniti voluptates molestias nulla, est debitis magni harum. Molestiae officiis sed optio, error expedita iusto fugiat. Voluptas sunt commodi quia omnis tempora maiores repudiandae laboriosam aliquam necessitatibus enim assumenda nisi nobis sint, dolorem temporibus cum amet quo debitis iure sequi. Soluta nihil aliquam animi doloribus voluptate! Quae facere dignissimos, ducimus natus mollitia unde beatae consectetur accusantium quaerat sint quisquam aut placeat rerum tempora quos incidunt minus?</p>
+<img class='bandeau' src="{% static 'images/ciel.jpg'%}" alt="" width="500">
+    <p class="date">Nous sommes le {{today}}, il est {{hour}}.</p>
+<section class="accueil_admin">
+    <section><p>Vous avez {{rdv_count}} rendez-vous à venir </p><a class="bouton_bleu" href="{% url 'mes-rdv' %}">Planning</a></section>
+    <section><p>Il reste {{creneaux_libres_count}} créneaux ouverts à la réservation </p><a class="bouton_bleu" href="{% url 'creneaux-dispo' %}">Voir les créneaux</a></section>
+</section>
+
+
+{% else %}
+<section class="presentation">
+    <figure>
+        <img src="{% static 'images/photo.jpg'%}" alt="" width="500">
+    </figure>
+    <article>
+        <h2>Qui suis-je ?</h2>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Inventore quas accusamus cum quia corrupti deleniti voluptates molestias nulla, est debitis magni harum. Molestiae officiis sed optio, error expedita iusto fugiat. Voluptas sunt commodi quia omnis tempora maiores repudiandae laboriosam aliquam necessitatibus enim assumenda nisi nobis sint, dolorem temporibus cum amet quo debitis iure sequi. Soluta nihil aliquam animi doloribus voluptate! Quae facere dignissimos, ducimus natus mollitia unde beatae consectetur accusantium quaerat sint quisquam aut placeat rerum tempora quos incidunt minus?</p>
+    </article>
+</section>
+<section class="presentation">
+    
+    <article>
+        <h2>Mes prestations</h2>
+        <ul>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur atque libero quasi odio molestias temporibus.</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur atque libero quasi odio molestias temporibus.</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur atque libero quasi odio molestias temporibus.</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur atque libero quasi odio molestias temporibus.</li>
+        </ul>
+    </article>
+    <figure>
+        <img src="{% static 'images/sac.gif'%}" alt="" width="500">
+    </figure>
+</section>
+{% endif %}
+
 
 {%endblock%}

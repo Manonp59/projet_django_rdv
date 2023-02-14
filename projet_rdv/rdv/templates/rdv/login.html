@@ -1,8 +1,11 @@
 {% extends 'rdv/base.html' %}
+
+{%block title%}Connexion{%endblock%}
+
 {% block content %}
-    <p>{{ message }}</p>
+    <h1 class="titre_rouge">Connexion</h1>
     <form method="post">
-        {{ form.as_p }}
+        {{ form.as_p}}
         {% csrf_token %}
         <button type="submit" >Se connecter</button>
     </form>

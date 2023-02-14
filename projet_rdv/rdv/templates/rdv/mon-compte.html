@@ -1,19 +1,25 @@
 {%extends 'rdv/base.html'%}
 
-
+{%block title%}Mon compte{%endblock%}
 
 {% block content%}
 
-<h2>Mon compte</h2>
+<h1>Mon compte</h1>
 
-<ul>
-    <li>Nom d'utilisateur : {{user.username}}</li>
-    <li>Nom : {{user.last_name}}</li>
-    <li>Prénom : {{user.first_name}}</li>
-    <li>Adresse mail : {{user.email}}</li>
-    <li>Mot de passe : ************</li>
-</ul>
 
-<a href="{% url 'modifier-mon-compte' %}">Modifier mes informations</a>
+<section id="details_compte">
+    <section class="texte_gauche">
+        <ul>
+            <li>Nom d'utilisateur : {{user.username}}</li>
+            <li>Nom : {{user.last_name}}</li>
+            <li>Prénom : {{user.first_name}}</li>
+            <li>Adresse mail : {{user.email}}</li>
+            <li>Mot de passe : ************</li>
+        </ul>
+    </section>
+</section>  
+<section id="bouton_compte">
+<a class="bouton_bleu" href="{% url 'modifier-mon-compte' %}">Modifier mes informations</a>
+</section>
     
 {%endblock%}

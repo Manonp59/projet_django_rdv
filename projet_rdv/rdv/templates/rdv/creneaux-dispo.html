@@ -1,14 +1,29 @@
 {% extends 'rdv/base.html' %}
 
+{%block title%}Créneaux disponibles{%endblock%}
+
 {% block content %}
 
 <h1>Créneaux ouverts à la réservation</h1>
 
+<section id='creneaux_dispo'>
 {% for rdv in liste_rdv|dictsort:'date'%}
 {% if not rdv.user %}
-<p> Date : {{rdv.date}} <a href="{% url 'prendre-rdv' rdv.id %}">Réserver ce créneau</a> </p>
+{% if user.is_staff %}
+<p class="bouton_centre"> 🗓️ {{rdv.date}} <a class="bouton_bleu" id="supprimer" href="{% url 'supprimer-creneau' rdv.id %}">Supprimer ce créneau</a> </p>
+{% else %}
+<p class="bouton_centre"> 🗓️ {{rdv.date}} <a class="bouton_bleu" href="{% url 'prendre-rdv' rdv.id %}">Réserver ce créneau</a> </p>
+{% endif %}
 {% endif %}
 {% endfor %}
 
+</section>
+{% if user.is_staff %}
 
+<div class="bouton_centre">
+    <a class="bouton_bleu bouton_page" id="ouvrir" href="{% url 'creer-creneau' %}">Ouvrir un nouveau créneau</a>
+</div>
+
+
+{% endif %}
 {% endblock%}

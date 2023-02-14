@@ -1,13 +1,51 @@
 {% extends 'rdv/base.html' %}
+
+{%block title%}Inscription{%endblock%}
+
 {% block content %}
-    <h2>Inscription</h2>
-    {% if form.errors %}
-        {{ form.errors }}
-    {% endif %}
-    <form method="post">
-        {{ form.as_p }}
+    <h1 class="titre_rouge">Inscription</h1>
+    
+    <section id="inscription">
+    <form  method="post">
+        <section class="texte_gauche">
         {% csrf_token %}
-        <button type="submit" >S’inscrire</button>
+        {{ form.non_field_errors }}
+        <div class="fieldWrapper">
+            {{form.username.errors}}
+            <p><label for="{{form.username.id_for_label}}">Nom d'utilisateur :</label>
+            {{form.username}}</p>
+        </div>
+        <div class="fieldWrapper">
+            {{form.email.errors}}
+            <p><label for="{{form.email.id_for_label}}">Adresse email :</label>
+            {{form.email}}</p>
+        </div>
+        <div class="fieldWrapper">
+            {{form.first_name.errors}}
+            <p><label for="{{form.first_name.id_for_label}}">Prénom :</label>
+            {{form.first_name}}</p>
+        </div>
+        <div class="fieldWrapper">
+            {{form.last_name.errors}}
+            <p><label for="{{form.last_name.id_for_label}}">Nom :</label>
+            {{form.last_name}}</p>
+        </div>
+        <div class="fieldWrapper">
+            {{form.password1.errors}}
+            <p><label for="{{form.password1.id_for_label}}">Mot de passe : </label>
+            {{form.password1}}</p>
+        </div>
+        <div class="fieldWrapper">
+            {{form.password2.errors}}
+            <p><label for="{{form.password2.id_for_label}}">Confirmation mot de passe : </label>
+            {{form.password2}}</p>
+        </div>
+        <div class="bouton_centre">
+            <button class="bouton_bleu" type="submit" >S’inscrire</button>
+        </div>
+    </section>
     </form>
+</section>
+   
 {% endblock content %}
 

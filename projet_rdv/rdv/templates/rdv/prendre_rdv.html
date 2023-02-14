@@ -1,14 +1,32 @@
 {% extends 'rdv/base.html' %}
 
+{%block title%}Prendre rendez-vous{%endblock%}
+
 {% block content %}
-
+{% load static %}
 <h1>Prendre un rendez-vous</h1> 
-<p>Vous vous apprêtez à réserver un rendez-vous le : {{rdv.date}}. Merci d'indiquer un motif.</p>  
 
-<form action="" method="post">
-    {%csrf_token%}
-    {{form.as_p}}
-    <input type="submit" value="Valider">
-</form>
+<section id="prendre_rdv">
+    <section>
+        <figure>
+            <img src="{% static 'images/rdv.gif' %}" alt="">
+        </figure>
+    </section>
+    <section>
+        <p>Vous vous apprêtez à réserver un rendez-vous le : </p><p>{{rdv.date}} </p><p> Merci d'indiquer un motif.</p>  
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="fieldWrapper">
+                <p><label for="{{form.motif.id_for_label}}">Motif : </label>
+                {{form.motif}}</p>
+            </div>
+            <div class="bouton_centre">
+                <input class="bouton_bleu bouton_page" type="submit" value="Valider">
+            </div>
+            
+        </form>
+    </section>
+</section>
 
 {%endblock%}
