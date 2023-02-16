@@ -11,15 +11,15 @@ from datetime import datetime
 
 def accueil(request):
     """Vue pour la page d'accueil du site. Affiche des statistiques sur les rendez-vous
-    à venir et les créneaux horaires libres pour la journée courante.
+    à venir et les créneaux horaires libres si le coach est connecté. Sinon il affiche la présentation du coach et ses prestations.
 
     Args:
         request : requête HTTP reçue par la vue
 
     Returns:
-        - réponse HTTP avec un template rendu contenant les statistiques suivantes :
-            - le nombre de rendez-vous à venir pour la journée courante
-            - le nombre de créneaux horaires libres pour la journée courante
+        - réponse HTTP avec un template rendu contenant les statistiques suivantes pour le coach :
+            - le nombre de rendez-vous à venir 
+            - le nombre de créneaux horaires libres
             - la date courante au format 'YYYY-MM-DD'
             - l'heure courante au format 'HH:MM'
     """
@@ -84,8 +84,7 @@ def logout_user(request):
 def signup_page(request):
     """
     Vue pour la page d'inscription du site. Affiche un formulaire d'inscription permettant à un nouvel utilisateur
-    de créer un compte en fournissant un nom d'utilisateur, une adresse email et un mot de passe. Si le formulaire
-    est soumis et valide, le nouvel utilisateur est enregistré et connecté automatiquement, puis redirigé vers la
+    de créer un compte. Si le formulaire est soumis et valide, le nouvel utilisateur est enregistré et connecté automatiquement, puis redirigé vers la
     page d'accueil.
 
     Parameters:
@@ -111,8 +110,7 @@ def signup_page(request):
 def prendre_rdv(request, id):
     """
     Vue pour la prise d'un rendez-vous sur un créneau horaire libre. Affiche un formulaire permettant à l'utilisateur
-    connecté de choisir un motif de rendez-vous, puis enregistre le rendez-vous avec le motif choisi et l'utilisateur
-    connecté. Redirige ensuite l'utilisateur vers la liste de ses rendez-vous à venir.
+    connecté de choisir un motif de rendez-vous, puis enregistre le rendez-vous. Redirige ensuite l'utilisateur vers la liste de ses rendez-vous à venir.
 
     Parameters:
     - request: requête HTTP reçue par la vue
@@ -142,8 +140,7 @@ def prendre_rdv(request, id):
 @login_required(login_url='login')
 def user_detail(request):
     """
-    Vue affichant les détails de l'utilisateur connecté (nom d'utilisateur, adresse e-mail, etc.) ainsi que
-    certaines actions qu'il peut effectuer (modifier son mot de passe, supprimer son compte, etc.).
+    Vue affichant les détails de l'utilisateur connecté ainsi qu'un bouton pour modifier son compte.
 
     Parameters:
     - request: requête HTTP reçue par la vue
@@ -190,10 +187,7 @@ def liste_rdv(request):
     """
     Fonction de vue qui affiche une liste de rendez-vous.
 
-    Cette fonction utilise le décorateur @login_required pour vérifier si l'utilisateur est connecté. Si l'utilisateur
-    n'est pas connecté, il sera redirigé vers l'URL 'login'.
-
-    La fonction récupère tous les objets Rdv (c'est-à-dire tous les rendez-vous) à partir de la base de données, puis les
+    La fonction récupère tous les rendez-vous à partir de la base de données, puis les
     envoie au modèle 'mes-rdv.html' pour les afficher.
 
     Args:
@@ -211,9 +205,6 @@ def liste_rdv(request):
 def rdv_detail(request, id):
     """
     Fonction de vue qui affiche les détails d'un rendez-vous.
-
-    Cette fonction utilise le décorateur @login_required pour vérifier si l'utilisateur est connecté. Si l'utilisateur
-    n'est pas connecté, il sera redirigé vers l'URL 'login'.
 
     La fonction récupère l'objet Rdv correspondant à l'ID donné à partir de la base de données, puis l'envoie au modèle
     'rdv-detail.html' pour l'afficher.
@@ -345,6 +336,14 @@ def supprimer_creneau(request, id):
     Requiert l'autorisation 'rdv.supprimer_creneau'.
 
     Paramètres :
+        request : HttpRequest
+            La requête HTTP reçue par la vue.
+        id : int
+            L'identifiant du rendez-vous à supprimer
+
+    Retour :
+    HttpResponse
+        La réponse HTTP renvoyée à l'utilisateur.
     """
     rdv = Rdv.objects.get(id=id)
     if request.method == 'POST':
