@@ -6,11 +6,6 @@ from rdv.widget import DateTimePickerInput
 from django.forms import widgets
 
 
-# Utilisé pour obtenir un calendrier
-class DateInput(forms.DateTimeInput):
-    input_type = 'date_time'
-
-
 # Formulaire de connexion
 class LoginForm(forms.Form):
     username = forms.CharField(max_length=63, label="Nom d'utilisateur")
